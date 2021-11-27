@@ -1,1 +1,1 @@
-# shoppingmall-miniGame
+# word-relay-game
