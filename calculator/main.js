@@ -24,9 +24,23 @@ document.querySelector('#num-7').addEventListener('click', onClickNumber);
 document.querySelector('#num-8').addEventListener('click', onClickNumber);
 document.querySelector('#num-9').addEventListener('click', onClickNumber);
 
-document.querySelector('#plus').addEventListener('click', () => {});
-document.querySelector('#minus').addEventListener('click', () => {});
-document.querySelector('#divide').addEventListener('click', () => {});
-document.querySelector('#multiply').addEventListener('click', () => {});
+const onClickOperator = (op) => () => {
+  if (numOne) {
+    operator = op;
+    $operator.value = op;
+  } else {
+    alert('숫자를 먼저 입력하세요.');
+  }
+};
+document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
+document
+  .querySelector('#minus')
+  .addEventListener('click', onClickOperator('-'));
+document
+  .querySelector('#divide')
+  .addEventListener('click', onClickOperator('/'));
+document
+  .querySelector('#multiply')
+  .addEventListener('click', onClickOperator('*'));
 document.querySelector('#calculate').addEventListener('click', () => {});
 document.querySelector('#clear').addEventListener('click', () => {});
