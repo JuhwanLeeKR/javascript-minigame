@@ -11,16 +11,17 @@ const $result = document.querySelector('#result');
 5. 다음 중첩된 분기점이 나오면 1~4의 과정을 반복한다.
 */
 const onClickNumber = (event) => {
-  if (operator) {
-    // 비어있지 않다
-    if (!numTwo) {
-      $result.value = '';
-    }
-    numTwo += event.target.textContent;
-  } else {
+  if (!operator) {
     // 비어있다
     numOne += event.target.textContent;
+    $result.value += event.target.textContent;
+    return;
   }
+  // 비어있지 않다
+  if (!numTwo) {
+    $result.value = '';
+  }
+  numTwo += event.target.textContent;
   $result.value += event.target.textContent;
 }; // 고차 함수 (high order function)
 document.querySelector('#num-0').addEventListener('click', onClickNumber);
@@ -52,5 +53,35 @@ document
 document
   .querySelector('#multiply')
   .addEventListener('click', onClickOperator('*'));
-document.querySelector('#calculate').addEventListener('click', () => {});
-document.querySelector('#clear').addEventListener('click', () => {});
+document.querySelector('#calculate').addEventListener('click', () => {
+  if (numTwo) {
+    switch (operator) {
+      case '+':
+        $result.value = parseInt(numOne) + parseInt(numTwo);
+        break;
+      // -, *, / 일 때는 문자열이 숫자로 바뀌므로 parseInt()를 사용하지 않아도 된다.
+      case '-':
+        $result.value = numOne - numTwo;
+        break;
+      case '*':
+        $result.value = numOne * numTwo;
+        break;
+      case '/':
+        $result.value = numOne / numTwo;
+        break;
+      default:
+        break;
+    }
+  } else {
+    alert('숫자를 먼저 입력하세요.');
+  }
+});
+document.querySelector('#clear').addEventListener('click', () => {
+  // 초기화 하기
+  // 초기화를 쉽게하는 법: 위에 변수 선언을 순서대로 작성해준다.
+  numOne = '';
+  operator = '';
+  numTwo = '';
+  $operator.value = '';
+  $result.value = '';
+});
