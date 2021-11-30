@@ -72,6 +72,12 @@ document.querySelector('#calculate').addEventListener('click', () => {
       default:
         break;
     }
+    // 아래 4줄만 작성해주면 연달아 계산이 가능하다.
+    // 순서도를 짜보면서 연습하자.
+    $operator.value = '';
+    numOne = $result.value;
+    operator = '';
+    numTwo = '';
   } else {
     alert('숫자를 먼저 입력하세요.');
   }
@@ -85,3 +91,8 @@ document.querySelector('#clear').addEventListener('click', () => {
   $operator.value = '';
   $result.value = '';
 });
+
+/* 
+ 1. 현재 '='을 눌러야 연달아 계산이 가능하다. '=' 없이 연달아 계산이 가능하게 바꿔보자.
+ 2. '-'을 처음부터 사용하여 계산이 가능하도록 바꿔보자.
+ */
