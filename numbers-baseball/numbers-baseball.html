@@ -10,7 +10,14 @@
   </head>
   <body>
     <form id="form">
-      <input type="text" id="input" />
+      <input
+        required
+        type="text"
+        id="input"
+        minlength="4"
+        maxlength="4"
+        pattern="^(?!.*(.).*\1)\d{4}$"
+      />
       <button>확인</button>
     </form>
     <div id="logs"></div>
