@@ -37,11 +37,36 @@ $form.addEventListener('submit', (event) => {
   event.preventDefault(); // 기본 실행을 막아준다.
   const value = $input.value;
   $input.value = '';
-  if (checkInput(value)) {
-    // 문제 없음
-    tries.push(value);
-  } else {
-    // 에러 있음
-    alert('오류입니다.');
+  const valid = checkInput(value);
+  if (!valid) return;
+  if (answer.join('') === value) {
+    $logs.textContent = '홈런!';
+    return;
   }
+  if (tries.length >= 9) {
+    const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+    $logs.appendChild(message);
+    return;
+  }
+  // 몇 스트라이크 몇 볼인지 검사
+  let strike = 0;
+  let ball = 0;
+  for (let i = 0; i < answer.length; i++) {
+    const index = value.indexOf(answer[i]);
+    if (index > -1) {
+      // 일치하는 숫자 발견
+      if (index === i) {
+        // 자릿수도 같음
+        strike += 1;
+      } else {
+        // 숫자만 같음
+        ball += 1;
+      }
+    }
+  }
+  $logs.append(
+    `${value}: ${strike} 스트라이크 ${ball} 볼`,
+    document.createElement('br')
+  );
+  tries.push(value);
 });
