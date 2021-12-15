@@ -9,6 +9,51 @@ while (candidate.length > 0) {
   shuffle.push(value); // shuffle 배열에 넣기
 }
 console.log(shuffle);
-const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b); // sort는 순서를 오름차순으로 정렬
+// map, slice는 원본 배열을 바꾸지 않는다. (splice는 원본을 수정)
+const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b); // sort는 원본을 바꾸며, a - b는 순서를 오름차순으로 정렬, b - a는 내림차순으로 정렬
 const bonus = shuffle[6];
 console.log(winBalls, bonus);
+const $result = document.querySelector('#result');
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = winBalls[0];
+  $result.appendChild($ball);
+}, 1000);
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = winBalls[1];
+  $result.appendChild($ball);
+}, 2000);
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = winBalls[2];
+  $result.appendChild($ball);
+}, 3000);
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = winBalls[3];
+  $result.appendChild($ball);
+}, 4000);
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = winBalls[4];
+  $result.appendChild($ball);
+}, 5000);
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = winBalls[5];
+  $result.appendChild($ball);
+}, 6000);
+const $bonus = document.querySelector('#bonus');
+setTimeout(() => {
+  const $ball = document.createElement('div');
+  $ball.className = 'ball';
+  $ball.textContent = bonus;
+  $bonus.appendChild($ball);
+}, 7000);
