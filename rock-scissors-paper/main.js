@@ -15,10 +15,10 @@ const rspX = {
 
 let computerChoice = 'scissors';
 const changeComputerHand = () => {
-  if (computerChoice === 'rock') {
+  if (computerChoice === 'scissors') {
     // 가위
     computerChoice = 'rock'; // 화면을 바꿔주면 data 또한 바꿔야 한다.
-  } else if (computerChoice === 'scissors') {
+  } else if (computerChoice === 'rock') {
     // 바위
     computerChoice = 'paper';
   } else if (computerChoice === 'paper') {
@@ -28,4 +28,16 @@ const changeComputerHand = () => {
   $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
   $computer.style.backgroundSize = 'auto 200px';
 };
-setInterval(changeComputerHand, 50);
+let intervalId = setInterval(changeComputerHand, 50);
+
+const clickButton = () => {
+  clearInterval(intervalId);
+  // 점수 계산 및 화면 표시
+  setTimeout(() => {
+    clearInterval(intervalId);
+    intervalId = setInterval(changeComputerHand, 50);
+  }, 1000);
+};
+$rock.addEventListener('click', clickButton);
+$scissors.addEventListener('click', clickButton);
+$paper.addEventListener('click', clickButton);
