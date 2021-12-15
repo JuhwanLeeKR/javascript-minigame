@@ -16,9 +16,27 @@ console.log(winBalls, bonus);
 const $result = document.querySelector('#result');
 const $bonus = document.querySelector('#bonus');
 
+function colorize(number, $tag) {
+  if (number < 10) {
+    $tag.style.background = 'red';
+    $tag.style.color = 'white';
+  } else if (number < 20) {
+    $tag.style.background = 'orange';
+  } else if (number < 30) {
+    $tag.style.background = 'yellow';
+  } else if (number < 40) {
+    $tag.style.background = 'blue';
+    $tag.style.color = 'white';
+  } else {
+    $tag.style.background = 'green';
+    $tag.style.color = 'white';
+  }
+}
+
 const showBall = (number, $target) => {
   const $ball = document.createElement('div');
   $ball.className = 'ball';
+  colorize(number, $ball);
   $ball.textContent = number;
   $target.appendChild($ball);
 };

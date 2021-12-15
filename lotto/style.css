@@ -9,3 +9,6 @@
   text-align: center;
   margin-right: 20px;
 }
+.ball:nth-child(1) {
+  margin-left: 20px;
+}
