@@ -30,11 +30,41 @@ const changeComputerHand = () => {
 };
 let intervalId = setInterval(changeComputerHand, 50);
 
+const scoreTable = {
+  rock: 0,
+  scissors: 1,
+  paper: -1,
+};
+
 let clickable = true;
+let score = 0;
 const clickButton = () => {
   if (clickable) {
     clearInterval(intervalId);
     clickable = false;
+    const myChoice =
+      event.target.textContent === '바위'
+        ? 'rock'
+        : event.target.textContent === '가위'
+        ? 'scissors'
+        : 'paper';
+    const myScore = scoreTable[myChoice];
+    const computerScore = scoreTable[computerChoice];
+    const diff = myScore - computerScore;
+
+    let message;
+    // 2, -1은 승리조건이고, -2, 1은 패배조건, 점수표 참고
+    if ([2, -1].includes(diff)) {
+      // diff === 2 || diff === -1
+      score += 1;
+      message = '승리';
+    } else if ([-2, 1].includes(diff)) {
+      score -= 1;
+      message = '패배';
+    } else {
+      message = '무승부';
+    }
+    $score.textContent = `${message} 총: ${score}점`;
     // 점수 계산 및 화면 표시
     setTimeout(() => {
       clickable = true;
