@@ -14,46 +14,21 @@ const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b); // sort는 원본을
 const bonus = shuffle[6];
 console.log(winBalls, bonus);
 const $result = document.querySelector('#result');
-setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = winBalls[0];
-  $result.appendChild($ball);
-}, 1000);
-setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = winBalls[1];
-  $result.appendChild($ball);
-}, 2000);
-setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = winBalls[2];
-  $result.appendChild($ball);
-}, 3000);
-setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = winBalls[3];
-  $result.appendChild($ball);
-}, 4000);
-setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = winBalls[4];
-  $result.appendChild($ball);
-}, 5000);
-setTimeout(() => {
-  const $ball = document.createElement('div');
-  $ball.className = 'ball';
-  $ball.textContent = winBalls[5];
-  $result.appendChild($ball);
-}, 6000);
 const $bonus = document.querySelector('#bonus');
-setTimeout(() => {
+
+const showBall = (number, $target) => {
   const $ball = document.createElement('div');
   $ball.className = 'ball';
-  $ball.textContent = bonus;
-  $bonus.appendChild($ball);
+  $ball.textContent = number;
+  $target.appendChild($ball);
+};
+
+// setTimeout()은 정확하지 않으므로 주의해야한다.
+for (let i = 0; i < 6; i++) {
+  setTimeout(() => {
+    showBall(winBalls[i], $result);
+  }, 1000 * (i + 1));
+}
+setTimeout(() => {
+  showBall(bonus, $bonus);
 }, 7000);
