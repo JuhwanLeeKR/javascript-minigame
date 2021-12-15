@@ -30,13 +30,17 @@ const changeComputerHand = () => {
 };
 let intervalId = setInterval(changeComputerHand, 50);
 
+let clickable = true;
 const clickButton = () => {
-  clearInterval(intervalId);
-  // 점수 계산 및 화면 표시
-  setTimeout(() => {
+  if (clickable) {
     clearInterval(intervalId);
-    intervalId = setInterval(changeComputerHand, 50);
-  }, 1000);
+    clickable = false;
+    // 점수 계산 및 화면 표시
+    setTimeout(() => {
+      clickable = true;
+      intervalId = setInterval(changeComputerHand, 50);
+    }, 1000);
+  }
 };
 $rock.addEventListener('click', clickButton);
 $scissors.addEventListener('click', clickButton);
