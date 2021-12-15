@@ -24,7 +24,7 @@ const showBall = (number, $target) => {
 };
 
 // setTimeout()은 정확하지 않으므로 주의해야한다.
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < winBalls.length; i++) {
   setTimeout(() => {
     showBall(winBalls[i], $result);
   }, 1000 * (i + 1));
@@ -32,3 +32,6 @@ for (let i = 0; i < 6; i++) {
 setTimeout(() => {
   showBall(bonus, $bonus);
 }, 7000);
+
+// var + 비동기가 만나면 클로저 문제가 발생한다.
+// 클로저: 함수와 함수 바깥의 변수와의 관계
