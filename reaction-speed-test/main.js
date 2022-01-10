@@ -3,6 +3,7 @@ const $result = document.querySelector('#result');
 let startTime;
 let endTime;
 const records = [];
+let timeoutId;
 
 $screen.addEventListener('click', function () {
   if ($screen.classList.contains('waiting')) {
@@ -10,7 +11,7 @@ $screen.addEventListener('click', function () {
     $screen.classList.remove('waiting');
     $screen.classList.add('ready');
     $screen.textContent = '초록색이 되면 클릭하세요';
-    setTimeout(function () {
+    timeoutId = setTimeout(function () {
       startTime = new Date();
       $screen.classList.remove('ready');
       $screen.classList.add('now');
@@ -18,6 +19,10 @@ $screen.addEventListener('click', function () {
     }, Math.floor(Math.random() * 1000) + 2000); // 2000~3000 사이 수
   } else if ($screen.classList.contains('ready')) {
     // 준비 화면
+    clearTimeout(timeoutId);
+    $screen.classList.remove('ready');
+    $screen.classList.add('waiting');
+    $screen.textContent = '너무 성급하시군요!';
   } else if ($screen.classList.contains('now')) {
     // 클릭 화면
     endTime = new Date();
